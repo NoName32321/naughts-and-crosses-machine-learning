@@ -35,7 +35,7 @@ def playerMove():
         if not (len(inputMove) == 2 and inputMove[0] in {'a', 'b', 'c'} and inputMove[1] in {'1', '2', '3'}):
             inputValid = False
             print("")
-            print("Output invalid, try again.")
+            print("Location invalid, try again.")
             print("位置无效，请重新输入。")
             
         if inputValid == True:
@@ -47,7 +47,7 @@ def playerMove():
             elif inputMove[0] == 'c':
                 moveIndex += 6
             moveIndex += int(inputMove[1]) - 1
-            if curPos[moveIndex] == 0:
+            if curPos[moveIndex] != '0':
                 inputValid = False
                 print("")
                 print("Location invalid, try again.")
@@ -100,7 +100,7 @@ def computerMove():
     for i in range(9):
         totalTokens += int(moveTokens[i*2:i*2+2])
         moveTokensTotal.append(moveTokens[i*2:i*2+2])
-    randNum = random.randint(0, totalTokens)
+    randNum = random.randint(1, totalTokens)
     moveIndex = 0
     while randNum > 0:
         randNum -= int(moveTokensTotal[moveIndex])
@@ -128,6 +128,9 @@ def computerMove():
         resMove = 'c2'
     elif moveIndex == 8:
         resMove = 'c3'
+    else:
+        resMove = moveIndex
+        print("error")
     
     print("")
     print("Computer played: ", resMove)
@@ -308,5 +311,3 @@ while uInput != 'END':
             
             
             
-
-
